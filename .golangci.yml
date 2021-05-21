@@ -1,0 +1,27 @@
+linters:
+  enable-all: true
+  disable:
+    - interfacer # deprecated
+    - scopelint # deprecated
+    - gocognit # detects complex functions
+    - maligned # checks if structs can be reordered for more efficient packing
+    - rowserrcheck # checks if errors in DB queries are checked
+    - funlen # detects long functions
+    - depguard # checks imports against an allow-list
+    - goerr113 # forbids dynamic errors like ad-hoc wrapping with fmt.Errorf
+    - exhaustivestruct # requires struct initializations to contain all fields
+    - testpackage # requires tests to be in a separate package
+    - gochecknoglobals # forbids global variables
+    - wrapcheck # requires errors from external packages to be wrapped
+    - paralleltest # requires all test cases to run t.Parallel()
+    - forbidigo # forbids Println/Printf as it is likely used for debugging
+    - ifshort # requires expressions to be pulled into if statements if the result is only used there
+    - cyclop # limits the cyclomatic complexity of functions
+linters-settings:
+  godox:
+    keywords:
+      - FIXME # FIXME generates a linter warning
+  goconst:
+    min-occurrences: 5
+issues:
+  exclude-use-default: false

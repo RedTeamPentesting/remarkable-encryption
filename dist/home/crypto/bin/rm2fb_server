@@ -1,0 +1,2 @@
+#!/bin/bash
+LD_PRELOAD=/home/crypto/lib/librm2fb_server.so /usr/bin/xochitl

@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qml/Main.qml</file>
+        <file>qml/Key.qml</file>
+        <file>qml/Keyboard.qml</file>
+        <file>qml/banner.png</file>
+    </qresource>
+</RCC>

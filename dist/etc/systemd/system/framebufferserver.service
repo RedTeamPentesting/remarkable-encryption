@@ -1,0 +1,13 @@
+[Unit]
+Description=Framebuffer Server
+After=home.mount
+
+[Service]
+ExecStart=/home/crypto/bin/rm2fb_server
+Restart=on-failure
+ExecStartPost=/bin/sleep 1
+
+[Install]
+WantedBy=multi-user.target
+
+

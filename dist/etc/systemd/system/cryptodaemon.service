@@ -1,0 +1,14 @@
+[Unit]
+Description=Cryptodaemon
+Requires=framebufferserver.service
+
+[Service]
+ExecStart=/home/crypto/bin/cryptodaemon
+Restart=on-failure
+# allow cleanup by new subprocesses after SIGTERM
+KillMode=mixed
+
+[Install]
+WantedBy=multi-user.target
+
+
