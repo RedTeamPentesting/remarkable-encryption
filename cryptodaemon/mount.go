@@ -168,6 +168,9 @@ func (cm *CryptoMount) mount(ctx context.Context, passphrase string) error { // 
 		close(cm.Terminated)
 	}()
 
+	timer := time.NewTimer(defaultMountTimeout)
+	defer timer.Stop()
+
 	select {
 	case <-ready:
 		mounted, err := cm.Mounted()
@@ -186,7 +189,7 @@ func (cm *CryptoMount) mount(ctx context.Context, passphrase string) error { // 
 		return nil
 	case err := <-cm.Terminated:
 		return err
-	case <-time.After(defaultMountTimeout):
+	case <-timer.C:
 		err := cmd.Process.Kill()
 		if err != nil {
 			return fmt.Errorf("kill process after timeout: %w", err)
