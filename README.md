@@ -11,9 +11,12 @@ post](https://blog.redteam-pentesting.de/2021/remarkable-encryption/).
 This project is considered experimental and it cannot be guaranteed that the
 device will not be bricked as a result of this setup. The project and the
 toolchain in this repository were tested on the reMarkable 2 firmware version
-`2.6.2.75`. If a different firmware version is used, the toolchain likely
-produces a crashing passphrase prompt application. In this case, the device can
-be unlocked by providing the passphrase via USB network connection:
+`2.13.0.689`. If a different firmware version is used, the commit hash
+(`FRAMEBUFFER_COMMIT`) in the `Makefile` has to be updated to a
+[remarkable2-framebuffer](https://github.com/ddvk/remarkable2-framebuffer)
+commit that supports the chosen firmware version. Otherwise, the toolchain
+likely produces a crashing passphrase prompt application. In this case, the
+device can be unlocked by providing the passphrase via USB network connection:
 
 ```bash
 # the actual IP addres may differ

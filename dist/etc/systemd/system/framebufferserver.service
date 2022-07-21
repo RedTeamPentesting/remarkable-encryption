@@ -1,13 +1,18 @@
 [Unit]
-Description=Framebuffer Server
+Description=reMarkable 2 Framebuffer Server
+Before=xochitl.service launcher.service remarkable-reboot.service remarkable-shutdown.service
 After=home.mount
+StartLimitInterval=30
+StartLimitBurst=5
+ConditionFileNotEmpty=/home/crypto/lib/librm2fb_server.so
 
 [Service]
-ExecStart=/home/crypto/bin/rm2fb_server
+Type=notify
+ExecStart=/usr/bin/xochitl
 Restart=on-failure
-ExecStartPost=/bin/sleep 1
+RestartSec=5
+Environment="HOME=/home/root"
+Environment="LD_PRELOAD=/home/crypto/lib/librm2fb_server.so"
 
 [Install]
 WantedBy=multi-user.target
-
-
