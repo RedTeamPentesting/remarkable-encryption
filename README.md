@@ -33,7 +33,7 @@ on the `toltec` Qt `Dockerfile` and adds Go 1.16, `git` and `wget`.
 
 ```bash
 docker build -t remarkable-crypto-toolchain .
-docker run --rm -it -v $(pwd):/project remarkable-crypto-toolchain make
+docker run --rm -it -u $(id -u):$(id -g) -v $(pwd):/project remarkable-crypto-toolchain make
 ```
 
 Alternatively, the components of this project can be built separately with the
