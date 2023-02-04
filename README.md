@@ -72,7 +72,7 @@ systemctl daemon-reload
 
 # WARNING: after the next step, xochitl (on plaintext home directory)
 # won't start by default anymore
-systemctl disable xochitl --now
+systemctl mask xochitl --now
 
 # after this step the screen will become blank
 systemctl enable framebufferserver --now
