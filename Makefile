@@ -1,4 +1,4 @@
-FRAMEBUFFER_COMMIT=20187c24fec68a9f094c30c09d32257299cc1a11
+FRAMEBUFFER_COMMIT=958b57c7e2b8f3c01d3e7f4314ccf7d09688ae34 # v0.0.29
 FUSE_URL=https://ftp.halifax.rwth-aachen.de/debian/pool/main/f/fuse/fuse_2.9.9-1+deb10u1_armhf.deb
 FUSE_FILENAME=fuse_2.9.9-1+deb10u1_armhf.deb
 FUSE_CHECKSUM=610b19c800bd7624b19b34de8eb2030c4596a64b2ce6f9efe074d844e3fb798b
