@@ -22,3 +22,6 @@ qrc_qml.cpp
 /remarkable-crypto-files.tar.gz
 Vagrantfile
 .vagrant
+/.cache
+/go
+
