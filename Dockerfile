@@ -1,6 +1,6 @@
-FROM ghcr.io/toltec-dev/qt:v2.1
+FROM ghcr.io/toltec-dev/qt:v2.3
 
-ARG GO_VERSION=1.19.5
+ARG GO_VERSION=1.20.2
 
 RUN cd /root \
     && curl --proto '=https' --tlsv1.2 -sSf \
@@ -8,9 +8,10 @@ RUN cd /root \
         -o go${GO_VERSION}.linux-amd64.tar.gz \
     && tar -C /usr/local -xzf go${GO_VERSION}.linux-amd64.tar.gz \
     && mkdir go \
-    && rm go${GO_VERSION}.linux-amd64.tar.gz
+    && rm go1.20.2.linux-amd64.tar.gz
 
 ENV PATH="$PATH:/usr/local/go/bin"
+ENV GOPATH="/tmp/go"
 
 RUN export DEBIAN_FRONTEND=noninteractive \
     && apt-get update -y \
