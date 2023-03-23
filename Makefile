@@ -29,7 +29,8 @@ dist_tar: dist
 	tar cvzf remarkable-crypto-files.tar.gz -C ./dist .
 
 gocryptfs:
-	GOARCH=arm CGO_ENABLED=0 go build -tags without_openssl -o dist/home/crypto/bin/gocryptfs "github.com/rfjakob/gocryptfs"
+	GOARCH=arm CGO_ENABLED=0 go build -tags without_openssl -o dist/home/crypto/bin/gocryptfs "github.com/rfjakob/gocryptfs/v2"
+
 
 password_prompt:
 	cd gui/password_prompt && qmake && make && mv password_prompt ../../dist/home/crypto/bin/password_prompt

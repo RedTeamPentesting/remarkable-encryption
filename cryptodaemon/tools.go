@@ -1,7 +1,8 @@
+//go:build tools
 // +build tools
 
 package main
 
 import (
-	_ "github.com/rfjakob/gocryptfs"
+	_ "github.com/rfjakob/gocryptfs/v2"
 )
