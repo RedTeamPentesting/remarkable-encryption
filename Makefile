@@ -1,4 +1,4 @@
-FRAMEBUFFER_COMMIT=958b57c7e2b8f3c01d3e7f4314ccf7d09688ae34 # v0.0.29
+FRAMEBUFFER_COMMIT=1f31c0c79fac74344c0eaca37b02f9a3cf6dca10
 FUSE_URL=https://ftp.halifax.rwth-aachen.de/debian/pool/main/f/fuse/fuse_2.9.9-1+deb10u1_armhf.deb
 FUSE_FILENAME=fuse_2.9.9-1+deb10u1_armhf.deb
 FUSE_CHECKSUM=610b19c800bd7624b19b34de8eb2030c4596a64b2ce6f9efe074d844e3fb798b
@@ -41,6 +41,7 @@ framebuffer:
 	mkdir -p ./dist/home/crypto/lib
 	[ -d "remarkable2-framebuffer" ] || git clone https://github.com/ddvk/remarkable2-framebuffer.git
 	cd remarkable2-framebuffer && git checkout ${FRAMEBUFFER_COMMIT}
+	cd remarkable2-framebuffer && git reset --hard && git apply ../framebuffer.patch # remove this when https://github.com/ddvk/remarkable2-framebuffer/pull/120 is merged
 	cd remarkable2-framebuffer && qmake && make
 	arm-linux-gnueabihf-strip remarkable2-framebuffer/src/client/librm2fb_client.so.1.0.1
 	cp remarkable2-framebuffer/src/client/librm2fb_client.so.1.0.1 dist/home/crypto/lib/librm2fb_client.so
