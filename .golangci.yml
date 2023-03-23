@@ -3,6 +3,11 @@ linters:
   disable:
     - interfacer # deprecated
     - scopelint # deprecated
+    - golint # deprecated
+    - nosnakecase # deprecated
+    - structcheck # deprecated
+    - deadcode # deprecated
+    - varcheck # deprecated
     - gocognit # detects complex functions
     - maligned # checks if structs can be reordered for more efficient packing
     - rowserrcheck # checks if errors in DB queries are checked
@@ -17,6 +22,9 @@ linters:
     - forbidigo # forbids Println/Printf as it is likely used for debugging
     - ifshort # requires expressions to be pulled into if statements if the result is only used there
     - cyclop # limits the cyclomatic complexity of functions
+    - varnamelen # forbids short variable names with large scopes
+    - exhaustruct # enforces earch struct field to be declared upon initialization
+    - nonamedreturns # forbids named returns
 linters-settings:
   godox:
     keywords:

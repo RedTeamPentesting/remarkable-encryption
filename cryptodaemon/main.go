@@ -1,3 +1,5 @@
+// Package main implements a deamon that managers an encrypted home directory on
+// the remarkable tablet.
 package main
 
 import (
@@ -36,7 +38,7 @@ func main() {
 
 	cm, err := NewCryptoMount(cryptoFS, mountPoint, logger)
 	if err != nil {
-		logger.Printf("creating crypto mount: 	%v", err)
+		logger.Printf("creating crypto mount: %v", err)
 
 		return
 	}
@@ -73,7 +75,7 @@ func main() {
 	}
 }
 
-// nolint:cyclop
+//nolint:cyclop
 func run(ctx context.Context, cm *CryptoMount, logger *Logger) error {
 	ctx, cancel := context.WithCancel(ctx)
 	defer cancel()

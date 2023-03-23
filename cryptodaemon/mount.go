@@ -122,7 +122,7 @@ func (cm *CryptoMount) Mount(ctx context.Context) error {
 	return nil
 }
 
-func (cm *CryptoMount) mount(ctx context.Context, passphrase string) error { // nolint:cyclop
+func (cm *CryptoMount) mount(ctx context.Context, passphrase string) error { //nolint:cyclop
 	if err := ctx.Err(); err != nil {
 		return err
 	}
@@ -140,7 +140,7 @@ func (cm *CryptoMount) mount(ctx context.Context, passphrase string) error { // 
 
 	var stdErr bytes.Buffer
 
-	// nolint:gosec
+	//nolint:gosec
 	cmd := exec.CommandContext(ctx, findExecutable("gocryptfs"), "-fg", "-nonempty",
 		fmt.Sprintf("-notifypid=%d", os.Getpid()), cm.cryptoFS, mountPoint)
 
@@ -200,7 +200,7 @@ func (cm *CryptoMount) mount(ctx context.Context, passphrase string) error { // 
 }
 
 func wrapMountError(err error, stdErr string) error {
-	if exitErr, ok := err.(*exec.ExitError); ok { // nolint:errorlint
+	if exitErr, ok := err.(*exec.ExitError); ok { //nolint:errorlint
 		if strings.Contains(strings.ToLower(stdErr), "password incorrect") {
 			return ErrPassphraseIncorrect
 		}
@@ -251,14 +251,14 @@ func (cm *CryptoMount) Unmount() error {
 
 	var stdErr bytes.Buffer
 
-	// nolint:gosec
+	//nolint:gosec
 	cmd := exec.Command(findExecutable("fusermount"), "-u", mountPoint)
 	cmd.Stderr = &stdErr
 	cmd.Stdout = NewLogger(cm.log, "fusermount: ")
 
 	err = cmd.Run()
 	if err != nil {
-		exitErr, ok := err.(*exec.ExitError) // nolint:errorlint
+		exitErr, ok := err.(*exec.ExitError) //nolint:errorlint
 		if ok {
 			return fmt.Errorf("error code %d: %s", exitErr.ExitCode(), stdErr.String())
 		}

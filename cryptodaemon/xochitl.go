@@ -26,7 +26,7 @@ func xochitl(ctx context.Context) (kill func() error, result chan error) {
 	go func() {
 		err := cmd.Wait()
 		if err != nil {
-			exitErr, ok := err.(*exec.ExitError) // nolint:errorlint
+			exitErr, ok := err.(*exec.ExitError) //nolint:errorlint
 			if ok {
 				err = fmt.Errorf("error code %d: %s", exitErr.ExitCode(), stdErr.String())
 			}
