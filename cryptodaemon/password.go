@@ -83,12 +83,7 @@ func passphraseFromGUI(ctx context.Context, logWriter io.Writer, notifyIncorrect
 	cmd.Stdout = &stdOut
 	cmd.Stderr = NewLogger(logger, "password_prompt: ")
 
-	err := clearScreen(ctx)
-	if err != nil {
-		return outputChan, fmt.Errorf("clearing screen before password prompt: %w", err)
-	}
-
-	err = cmd.Start()
+	err := cmd.Start()
 	if err != nil {
 		return outputChan, fmt.Errorf("starting password_prompt: %w", err)
 	}
@@ -99,13 +94,6 @@ func passphraseFromGUI(ctx context.Context, logWriter io.Writer, notifyIncorrect
 		err := cmd.Wait()
 		if err != nil && ctx.Err() != nil {
 			logger.Printf("application terminated unexpectedly: %v", err)
-
-			return
-		}
-
-		err = clearScreen(ctx)
-		if err != nil {
-			logger.Printf("clearing screen after password prompt: %v", err)
 
 			return
 		}
@@ -160,17 +148,6 @@ func qtApplication(ctx context.Context, name string, args ...string) exec.Cmd {
 	cmd.Env = append(environmentWithCustomBinaries(), "LD_PRELOAD="+frameBufferClientSO)
 
 	return *cmd
-}
-
-func clearScreen(ctx context.Context) error {
-	cmd := qtApplication(ctx, "print")
-
-	out, err := cmd.CombinedOutput()
-	if err != nil {
-		return fmt.Errorf("executing print: %w\n%s", err, string(out))
-	}
-
-	return nil
 }
 
 func display(ctx context.Context, title string, subtitle string) error {
