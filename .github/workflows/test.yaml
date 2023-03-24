@@ -1,20 +1,21 @@
-name: Test
+name: Build
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
+
     - name: Build Docker image
       run: docker build -t remarkable-crypto-toolchain .
+
     - name: Build project
       run: docker run --rm -i -u $(id -u):$(id -g) -v $(pwd):/project remarkable-crypto-toolchain make
