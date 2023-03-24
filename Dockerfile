@@ -12,6 +12,7 @@ RUN cd /root \
 
 ENV PATH="$PATH:/usr/local/go/bin"
 ENV GOPATH="/tmp/go"
+ENV GOCACHE="/tmp/go-build-cache"
 
 RUN export DEBIAN_FRONTEND=noninteractive \
     && apt-get update -y \
