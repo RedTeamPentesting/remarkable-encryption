@@ -11,7 +11,7 @@ post](https://blog.redteam-pentesting.de/2021/remarkable-encryption/).
 This project is considered experimental and it cannot be guaranteed that the
 device will not be bricked as a result of this setup. The project and the
 toolchain in this repository were tested on the reMarkable 2 firmware version
-`2.13.0.689`. If a different firmware version is used, the commit hash
+`3.2.3.1595`. If a different firmware version is used, the commit hash
 (`FRAMEBUFFER_COMMIT`) in the `Makefile` has to be updated to a
 [remarkable2-framebuffer](https://github.com/ddvk/remarkable2-framebuffer)
 commit that supports the chosen firmware version. Otherwise, the toolchain
@@ -23,13 +23,17 @@ device can be unlocked by providing the passphrase via USB network connection:
 echo 'yourpassphrase' | nc 10.11.99.1 1234
 ```
 
+In some cases, the GUI (`xochitl`) will start rendering on a dark background
+causing graphics glitches right after entering the crytpo passphrase. This can
+be fixed by provoking a full screen refresh for example by opening a document.
+
 # Build
 
 This project is meant to be build using the [toltec v2.x
 toolchain](https://github.com/toltec-dev/toolchain/tree/v2.x). However, as this
 project contains Qt and Go builds, no single `toltec` Docker image can compile
 the whole project. Instead, this project contains a `Dockerfile` which is based
-on the `toltec` Qt `Dockerfile` and adds Go 1.16, `git` and `wget`.
+on the `toltec` Qt `Dockerfile` and adds Go 1.20, `git` and `wget`.
 
 ```bash
 docker build -t remarkable-crypto-toolchain .
@@ -87,5 +91,5 @@ systemctl enable cryptodaemon --now
 
 We are happy to receive contributions in the form of issues or pull requests.
 However, the scope of this project remains limited to our usecase. This means
-that only new features that suit this usecase are added. For different needs
-or if your threat model differs, feel free to fork this project.
+that only new features that suit this usecase are added. For different needs or
+if your threat model differs, feel free to fork this project.
